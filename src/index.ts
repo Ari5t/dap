@@ -6,11 +6,13 @@ function createWindow() {
     width: 400,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      // preload: path.join(__dirname, 'preload.js'),
+      webSecurity: true
     },
   })
 
-  mainWindow.loadFile(path.join(__dirname, "../index.html"))
+  mainWindow.webContents.openDevTools()
+  mainWindow.loadFile(path.join(__dirname, '../src/pages/index.html'))
 }
 
 app.whenReady().then(() => {
