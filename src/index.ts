@@ -1,4 +1,26 @@
-import { channelId } from './env'
-import discordService from './services/discord-service'
+import { app, BrowserWindow } from 'electron'
+import * as path from 'path'
 
-discordService.createMessage(channelId, 'test').then((r) => console.log(true))
+function createWindow() {
+  const mainWindow = new BrowserWindow({
+    width: 400,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  })
+
+  mainWindow.loadFile(path.join(__dirname, "../index.html"))
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+})
