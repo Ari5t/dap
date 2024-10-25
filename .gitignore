@@ -128,3 +128,5 @@ src/data/ip-blacklist.json
 tmp
 
 .market-chat_v2/redis/data/*
+
+src/env.ts
