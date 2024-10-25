@@ -23,17 +23,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <ul>
-        <li>
-          <p class="title">Message 1</p>
-          <div class="home__buttons-group">
-            <a class="button button-edit">Edit</a>
-            <a class="button button-delete">Delete</a>
-          </div>
-        </li>
-      </ul>
-      <a href="meesage.html" class="button-add">Add new message</a>
+    <div class="grid-container">
+      <div class="header">
+        <a href="index.html" class="back">&#60;</a>
+      </div>
+      <div class="main">
+        <form class="form-block">
+          <input type="text" id="channelId" placeholder="Channel Id" name="ChannelId">
+          <input type="text" id="message" placeholder="Message" name="message">
+        </form>
+      </div>
+      <div  class="footer">
+        <a class="button-add">Add</a>
+      </div>
     </div>
   </body>
 </html>
