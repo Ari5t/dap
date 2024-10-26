@@ -29,13 +29,33 @@
       </div>
       <div class="main">
         <form class="form-block">
-          <input type="text" id="channelId" placeholder="Channel Id" name="channel_id">
-          <input type="text" id="message" placeholder="Message" name="message">
+          <input type="text" id="name" placeholder="Name" name="name" />
+          <div class="select-wrapper">
+            <select class="select-time" id="time">
+              <option value="30m">Every 30m</option>
+              <option value="1h">Every 1h</option>
+              <option value="1h 30m">Every 1h 30m</option>
+              <option value="2h">Every 2h</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            id="channelId"
+            placeholder="Channel Id"
+            name="channel_id"
+          />
+          <input
+            type="text"
+            id="message"
+            placeholder="Message"
+            name="message"
+          />
         </form>
       </div>
-      <div  class="footer">
-        <a class="button-add">Add</a>
+      <div class="footer">
+        <button id="btn-add" class="button-add">Add</button>
       </div>
     </div>
+    <script src="./scripts/message.js"></script>
   </body>
 </html>

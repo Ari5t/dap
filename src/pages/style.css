@@ -46,6 +46,7 @@ li {
   background: #36393e;
   color: #fff;
   padding: 16px 24px;
+  border: none;
 
   cursor: pointer;
 
@@ -56,6 +57,10 @@ li {
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
+}
+
+button.button-add {
+  width: 100%;
 }
 
 .button-add:hover {
@@ -141,9 +146,9 @@ li {
   grid-template-rows: 50px 1fr auto;
   grid-row-gap: 10px;
   grid-template-areas:
-  "header"
-  "main"
-  "footer";
+    'header'
+    'main'
+    'footer';
 }
 
 .main {
@@ -153,4 +158,26 @@ li {
 
 .footer {
   grid-area: footer;
+}
+
+.select-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.select-time {
+  width: 100%;
+  background: #424549;
+  border-radius: 12px;
+  border: none;
+  border-right: 12px solid transparent;
+
+  padding: 12px;
+  color: #fff;
+}
+
+.select-time:focus-visible {
+  outline: none;
 }

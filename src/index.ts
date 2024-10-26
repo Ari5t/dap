@@ -1,7 +1,11 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
 import * as path from 'path'
 
-import messageServices from './services/message-services'
+import messageServices, { IMessage } from './services/message-services'
+
+function handleCreateMessage(_event: IpcMainEvent, data: IMessage) {
+  return messageServices.create(data)
+}
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -18,7 +22,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  ipcMain.handle('getMessages', () => messageServices.getMesssages())
+  ipcMain.handle('getMessages', () => messageServices.getAll())
+  ipcMain.on('createMessage', handleCreateMessage)
 
   createWindow()
 

@@ -1,12 +1,14 @@
 import Store from 'electron-store'
+import { v4 as uuidv4 } from 'uuid'
 
 const STORAGE_NAME = 'messages'
 
-interface IMessage {
+export interface IMessage {
   id: string
+  name: string
   channelId: string
-  message: string
-  schedule: number
+  text: string
+  schedule: string
 }
 
 class MessageServices extends Store {
@@ -21,13 +23,20 @@ class MessageServices extends Store {
     })
   }
 
-  public getMesssages() {
-    return this.store[STORAGE_NAME]
+  public getAll(): IMessage[] {
+    return this.store[STORAGE_NAME] as IMessage[]
   }
 
-  public getMessage(id: string) {}
+  public getById(id: string) {}
 
-  public setMessage(data: IMessage) {}
+  public create(newMeesage: IMessage) {
+    const data = {
+      id: uuidv4(),
+      ...newMeesage,
+    }
+
+    this.set(STORAGE_NAME, [...this.getAll(), data])
+  }
 }
 
 export default new MessageServices()
