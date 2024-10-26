@@ -1,13 +1,15 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import * as path from 'path'
+
+import messageServices from './services/message-services'
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 400,
     height: 600,
     webPreferences: {
-      // preload: path.join(__dirname, 'preload.js'),
-      webSecurity: true
+      preload: path.join(__dirname, 'preload.js'),
+      webSecurity: true,
     },
   })
 
@@ -16,6 +18,8 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  ipcMain.handle('getMessages', () => messageServices.getMesssages())
+
   createWindow()
 
   app.on('activate', function () {
