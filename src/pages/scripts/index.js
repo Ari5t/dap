@@ -24,6 +24,12 @@
     editButton.classList.add('button', 'button-edit')
     editButton.innerText = 'Edit'
 
+    editButton.addEventListener('click', () => {
+      window.location.href = `message.html?${new URLSearchParams({
+        id: element.id,
+      })}`
+    })
+
     const deleteButton = document.createElement('a')
     deleteButton.classList.add('button', 'button-delete')
     deleteButton.innerText = 'Delete'
