@@ -28,6 +28,11 @@
     deleteButton.classList.add('button', 'button-delete')
     deleteButton.innerText = 'Delete'
 
+    deleteButton.addEventListener('click', () => {
+      window.storages.removeMessage(element.id)
+      window.location.reload()
+    })
+
     actionButtons.appendChild(editButton)
     actionButtons.appendChild(deleteButton)
 

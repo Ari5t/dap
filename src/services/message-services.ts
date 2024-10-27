@@ -37,6 +37,12 @@ class MessageServices extends Store {
 
     this.set(STORAGE_NAME, [...this.getAll(), data])
   }
+
+  public remove(id: string) {
+    const newList = this.getAll().filter((v) => v.id !== id)
+
+    this.set(STORAGE_NAME, newList)
+  }
 }
 
 export default new MessageServices()

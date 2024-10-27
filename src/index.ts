@@ -7,6 +7,10 @@ function handleCreateMessage(_event: IpcMainEvent, data: IMessage) {
   return messageServices.create(data)
 }
 
+function handleRemoveMessage(_event: IpcMainEvent, id: string) {
+  return messageServices.remove(id)
+}
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 400,
@@ -24,6 +28,7 @@ function createWindow() {
 app.whenReady().then(() => {
   ipcMain.handle('getMessages', () => messageServices.getAll())
   ipcMain.on('createMessage', handleCreateMessage)
+  ipcMain.on('removeMessage', handleRemoveMessage)
 
   createWindow()
 

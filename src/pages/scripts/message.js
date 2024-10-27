@@ -12,5 +12,7 @@
       channelId: channelId.value,
       schedule: time.value,
     })
+
+    window.location.href = 'index.html'
   })
 })()
