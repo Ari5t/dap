@@ -1,19 +1,7 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
 import * as path from 'path'
+import { app, BrowserWindow, ipcMain } from 'electron'
 
-import messageServices, { IMessage } from './services/message-services'
-
-function handleCreateMessage(_event: IpcMainEvent, data: IMessage) {
-  return messageServices.create(data)
-}
-
-function handleEditMessage(_event: IpcMainEvent, data: IMessage) {
-  return messageServices.edit(data)
-}
-
-function handleRemoveMessage(_event: IpcMainEvent, id: string) {
-  return messageServices.remove(id)
-}
+import messageControllers from './controllers/message-controller'
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -30,11 +18,12 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  ipcMain.handle('getMessages', () => messageServices.getAll())
-  ipcMain.handle('getMessage', (_e, id: string) => messageServices.getById(id))
-  ipcMain.on('createMessage', handleCreateMessage)
-  ipcMain.on('editMessage', handleEditMessage)
-  ipcMain.on('removeMessage', handleRemoveMessage)
+  ipcMain.handle('getMessage', messageControllers.getById)
+  ipcMain.handle('getMessages', messageControllers.getAll)
+
+  ipcMain.on('createMessage', messageControllers.create)
+  ipcMain.on('editMessage', messageControllers.edit)
+  ipcMain.on('removeMessage', messageControllers.remove)
 
   createWindow()
 

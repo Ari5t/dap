@@ -1,7 +1,5 @@
-import Store from 'electron-store'
 import { v4 as uuidv4 } from 'uuid'
-
-const STORAGE_NAME = 'messages'
+import { Storage, StorageName } from './storage-services'
 
 export interface IMessage {
   id?: string
@@ -11,20 +9,13 @@ export interface IMessage {
   schedule: string
 }
 
-class MessageServices extends Store {
+class MessageServices extends Storage {
   constructor() {
-    super({
-      migrations: {
-        '0.0.1': (store) => {
-          store.set(STORAGE_NAME, [])
-          store.set('phase', '0.0.1')
-        },
-      },
-    })
+    super()
   }
 
   public getAll(): IMessage[] {
-    return this.store[STORAGE_NAME] as IMessage[]
+    return this.store[StorageName.MESSAGES] as IMessage[]
   }
 
   public getById(id: string) {
@@ -39,7 +30,7 @@ class MessageServices extends Store {
       ...newMeesage,
     }
 
-    this.set(STORAGE_NAME, [...this.getAll(), data])
+    this.set(StorageName.MESSAGES, [...this.getAll(), data])
   }
 
   public edit(data: IMessage) {
@@ -48,13 +39,13 @@ class MessageServices extends Store {
 
     all[index] = data
 
-    this.set(STORAGE_NAME, all)
+    this.set(StorageName.MESSAGES, all)
   }
 
   public remove(id: string) {
     const newList = this.getAll().filter((v) => v.id !== id)
 
-    this.set(STORAGE_NAME, newList)
+    this.set(StorageName.MESSAGES, newList)
   }
 }
 
