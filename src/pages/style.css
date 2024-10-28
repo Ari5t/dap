@@ -23,8 +23,6 @@ a {
 }
 
 li {
-  padding: 0px 24px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,6 +93,8 @@ button.button-add {
   display: flex;
   align-items: center;
 
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+
   grid-area: header;
 }
 
@@ -144,7 +144,6 @@ button.button-add {
   min-height: 100vh;
   display: grid;
   grid-template-rows: 50px 1fr auto;
-  grid-row-gap: 10px;
   grid-template-areas:
     'header'
     'main'

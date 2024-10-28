@@ -7,7 +7,7 @@ class MessageControllers {
   }
 
   public getById(_event: IpcMainInvokeEvent, id: string) {
-    messageServices.getById(id)
+    return messageServices.getById(id)
   }
 
   public create(_event: IpcMainInvokeEvent, data: IMessage) {

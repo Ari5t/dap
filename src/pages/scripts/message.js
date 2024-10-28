@@ -9,6 +9,7 @@
 
   if (id) {
     const message = await window.storages.message(id)
+
     channelId.value = message.channelId
     name.value = message.name
     time.value = message.schedule
