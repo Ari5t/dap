@@ -2,6 +2,7 @@ import * as path from 'path'
 import { app, BrowserWindow, ipcMain } from 'electron'
 
 import messageControllers from './controllers/message-controller'
+import discordController from './controllers/discord-controller'
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -24,6 +25,7 @@ app.whenReady().then(() => {
   ipcMain.on('createMessage', messageControllers.create)
   ipcMain.on('editMessage', messageControllers.edit)
   ipcMain.on('removeMessage', messageControllers.remove)
+  ipcMain.on('isValidToken', discordController.isValidToken)
 
   createWindow()
 
